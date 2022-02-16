@@ -1,0 +1,97 @@
+<template>
+  <div class="container">
+    <!-- 定义一个按钮来切换主题 -->
+    <div id="themeChange">
+      <n-switch @update:value="changeTheme">
+        <template #unchecked>浅色</template>
+        <template #checked>深色</template>
+      </n-switch>
+    </div>
+
+    <n-card class="content">
+      <div class="title" style="text-align: center">
+        <h1>SLM @Tiamoer</h1>
+        <h4>tiamoer@outlook.com</h4>
+      </div>
+      <div class="panel">
+        <n-card>
+          <n-tabs default-value="signin" size="large">
+            <n-tab-pane name="signin" tab="登录">
+              <n-form>
+                <n-form-item-row label="用户名">
+                  <n-input/>
+                </n-form-item-row>
+                <n-form-item-row label="密码">
+                  <n-input/>
+                </n-form-item-row>
+              </n-form>
+              <n-button type="primary" block secondary strong>
+                登录
+              </n-button>
+            </n-tab-pane>
+            <n-tab-pane name="signup" tab="注册">
+              <n-form>
+                <n-form-item-row label="用户名">
+                  <n-input/>
+                </n-form-item-row>
+                <n-form-item-row label="密码">
+                  <n-input/>
+                </n-form-item-row>
+                <n-form-item-row label="重复密码">
+                  <n-input/>
+                </n-form-item-row>
+              </n-form>
+              <n-button type="primary" block secondary strong>
+                注册
+              </n-button>
+            </n-tab-pane>
+          </n-tabs>
+        </n-card>
+      </div>
+    </n-card>
+  </div>
+</template>
+
+<script lang="ts">
+import {defineComponent, inject} from 'vue'
+import {darkTheme} from 'naive-ui'
+
+export default defineComponent({
+  setup() {
+
+    const theme:any = inject('theme')
+
+    const changeTheme = () => {
+      theme.style = (theme.style == null) ? darkTheme : null
+    }
+
+    return {
+      changeTheme
+    }
+  }
+})
+</script>
+
+<style scoped lang="less">
+.container {
+  width: 100%;
+  height: 100%;
+  background: url("../assets/image/大插画.webp") no-repeat;
+  background-size: contain;
+
+  #themeChange {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+  }
+
+  .content {
+    opacity: 0.9;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+</style>
