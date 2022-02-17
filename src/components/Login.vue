@@ -2,7 +2,7 @@
   <div class="container">
     <!-- 定义一个按钮来切换主题 -->
     <div id="themeChange">
-      <n-switch @update:value="changeTheme">
+      <n-switch :rail-style="railStyle" @update:value="changeTheme">
         <template #unchecked>浅色</template>
         <template #checked>深色</template>
       </n-switch>
@@ -25,7 +25,7 @@
                   <n-input/>
                 </n-form-item-row>
               </n-form>
-              <n-button type="primary" block secondary strong>
+              <n-button type="primary" block secondary strong @click="loginFunction">
                 登录
               </n-button>
             </n-tab-pane>
@@ -55,18 +55,41 @@
 <script lang="ts">
 import {defineComponent, inject} from 'vue'
 import {darkTheme} from 'naive-ui'
+import {useRouter} from 'vue-router'
 
 export default defineComponent({
   setup() {
 
     const theme:any = inject('theme')
+    const router = useRouter()
 
+    // 登录事件
+    const loginFunction = () => {
+      router.push({
+        path: '/Home',
+        query: {
+          id: 2,
+          token: null
+        }
+      })
+    }
+
+    // 主题开关按钮的切换事件
     const changeTheme = () => {
       theme.style = (theme.style == null) ? darkTheme : null
     }
 
     return {
-      changeTheme
+      railStyle: ({checked}) => {
+        // 修改开关的背景颜色
+        const style = {}
+        if (checked) {
+          style.background = '#3b3b3b'
+        }
+        return style
+      },
+      changeTheme,
+      loginFunction
     }
   }
 })

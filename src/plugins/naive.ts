@@ -9,7 +9,20 @@ import {
     NForm,
     NFormItemRow,
     NInput,
-    NSwitch
+    NSwitch,
+    NLayout,
+    NLayoutHeader,
+    NLayoutContent,
+    NLayoutSider,
+    NLayoutFooter,
+    NMenu,
+    NGrid,
+    NGi,
+    NSpace,
+    NAvatar,
+    NPopselect,
+    NIcon,
+    NTooltip,
 } from 'naive-ui';
 
 const naive = create({
@@ -23,7 +36,20 @@ const naive = create({
         NForm,
         NFormItemRow,
         NInput,
-        NSwitch
+        NSwitch,
+        NLayout,
+        NLayoutHeader,
+        NLayoutContent,
+        NLayoutSider,
+        NLayoutFooter,
+        NMenu,
+        NGrid,
+        NGi,
+        NSpace,
+        NAvatar,
+        NPopselect,
+        NIcon,
+        NTooltip,
     ]
 })
 
