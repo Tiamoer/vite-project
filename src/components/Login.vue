@@ -60,6 +60,9 @@ import {useRouter} from 'vue-router'
 export default defineComponent({
   setup() {
 
+    // 删除本地存储的主题标志
+    window.localStorage.removeItem('THEME_FLAG')
+
     const theme:any = inject('theme')
     const router = useRouter()
 
@@ -83,8 +86,12 @@ export default defineComponent({
       railStyle: ({checked}) => {
         // 修改开关的背景颜色
         const style = {}
+        // 深色切换为浅色时的方法
         if (checked) {
           style.background = '#3b3b3b'
+          window.localStorage.setItem('THEME_FLAG', 'light')
+        } else {
+          window.localStorage.setItem('THEME_FLAG', 'dark')
         }
         return style
       },
